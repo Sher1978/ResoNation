@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const dy = (e.clientY - cy) / cy;
       const title = heroSection.querySelector('.hero__title');
       if (title) {
-        title.style.transform = `translate(${dx * 8}px, ${dy * 4}px)`;
+        title.style.transform = `translateY(${dy * 4}px)`;
       }
     });
     heroSection.addEventListener('mouseleave', () => {
@@ -362,6 +362,105 @@ document.addEventListener('DOMContentLoaded', () => {
       strip.scrollTo({ left: 80, behavior: 'smooth' });
       setTimeout(() => strip.scrollTo({ left: 0, behavior: 'smooth' }), 700);
     }, 2000);
+  }
+
+  /* ── RADAR LIFE ─────────────────────────────────── */
+  const radarContainer = document.getElementById('scanner-figures');
+  if (radarContainer) {
+    const DOT_COUNT = 10;
+    const colors = ['red', 'red', 'red', 'red', 'red', 'orange', 'orange', 'orange', 'blue', 'blue'];
+    const dots = [];
+    const centerX = 100, centerY = 100;
+    const minR = 45, maxR = 85;
+
+    class RadarDot {
+      constructor(color) {
+        this.color = color;
+        this.reset();
+        this.el = this.createEl();
+        radarContainer.appendChild(this.el);
+      }
+      reset() {
+        const angle = Math.random() * Math.PI * 2;
+        const r = minR + Math.random() * (maxR - minR);
+        this.x = centerX + Math.cos(angle) * r;
+        this.y = centerY + Math.sin(angle) * r;
+        this.vx = (Math.random() - 0.5) * 0.1; // Reduced from 0.2
+        this.vy = (Math.random() - 0.5) * 0.1; // Reduced from 0.2
+        this.targetAngle = 0;
+      }
+      createEl() {
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', 'radar-dot');
+        g.setAttribute('data-color', this.color);
+        
+        // Human silhouette (top view) - Slightly larger
+        const body = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        body.setAttribute('rx', '4.5'); // Increased from 3.5
+        body.setAttribute('ry', '2.5'); // Increased from 2.0
+        body.setAttribute('class', 'dot-body');
+        
+        const head = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        head.setAttribute('r', '2'); // Increased from 1.5
+        head.setAttribute('cy', '-0.5');
+        head.setAttribute('class', 'dot-head');
+        
+        g.appendChild(body);
+        g.appendChild(head);
+        return g;
+      }
+      update(beamAngle) {
+        // Chaotic movement - 2x slower
+        this.vx += (Math.random() - 0.5) * 0.01; // Reduced from 0.02
+        this.vy += (Math.random() - 0.5) * 0.01; // Reduced from 0.02
+        this.vx = Math.max(-0.15, Math.min(0.15, this.vx)); // Caps reduced from 0.3
+        this.vy = Math.max(-0.15, Math.min(0.15, this.vy)); // Caps reduced from 0.3
+        
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Boundary check (circular)
+        const dx = this.x - centerX;
+        const dy = this.y - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > maxR || dist < minR) {
+          const angle = Math.atan2(dy, dx);
+          const targetR = dist > maxR ? maxR : minR;
+          this.x = centerX + Math.cos(angle) * targetR;
+          this.y = centerY + Math.sin(angle) * targetR;
+          this.vx *= -1;
+          this.vy *= -1;
+        }
+
+        // Apply position and rotation to silhouette
+        const dotAngle = Math.atan2(this.y - centerY, this.x - centerX) * (180 / Math.PI);
+        this.el.setAttribute('transform', `translate(${this.x}, ${this.y}) rotate(${dotAngle + 90})`);
+
+        // Flash check
+        // Radar sweep is 4s, so 90 deg/s. 
+        // We normalize beamAngle to 0-360
+        let normalizedDotAngle = (dotAngle + 360) % 360;
+        let diff = Math.abs(normalizedDotAngle - beamAngle);
+        if (diff > 180) diff = 360 - diff;
+        
+        if (diff < 15) {
+          this.el.classList.add('is-lit');
+        } else {
+          this.el.classList.remove('is-lit');
+        }
+      }
+    }
+
+    // Init dots
+    colors.forEach(c => dots.push(new RadarDot(c)));
+
+    const animateRadar = (time) => {
+      // Beam angle: 4s loop -> 0 to 360
+      const beamAngle = (time % 4000) / 4000 * 360;
+      dots.forEach(d => d.update(beamAngle));
+      requestAnimationFrame(animateRadar);
+    };
+    requestAnimationFrame(animateRadar);
   }
 
   /* ── CONSOLE SIGNATURE ──────────────────────────── */

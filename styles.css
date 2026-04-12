@@ -3,9 +3,9 @@
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  --color-base: #1A1A1B;
-  --color-base-2: #222224;
-  --color-base-3: #2A2A2C;
+  --color-base: #0A0A0B;
+  --color-base-2: #111112;
+  --color-base-3: #181819;
   --color-blue: #007AFF;
   --color-blue-glow: rgba(0, 122, 255, 0.25);
   --color-blue-dim: rgba(0, 122, 255, 0.12);
@@ -144,7 +144,7 @@ h1, h2, h3, h4 {
   transition: background 0.3s, border-color 0.3s;
 }
 .nav.scrolled {
-  background: rgba(26, 26, 27, 0.85);
+  background: rgba(10, 10, 11, 0.85);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid var(--color-border);
@@ -486,7 +486,7 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 .math-card {
   padding: 36px 30px;
@@ -610,6 +610,7 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
+  align-items: stretch;
 }
 .tool-card {
   padding: 48px 40px;

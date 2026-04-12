@@ -365,8 +365,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── CONSOLE SIGNATURE ──────────────────────────── */
+  const lang = document.documentElement.lang || 'ru';
+  const tagline = lang === 'en' 
+    ? 'Your Tribe. Your Social Code.' 
+    : 'Твоё племя. Твой Социальный Код.';
+
   console.log(
-    '%cRESOnation %c· Твоё племя. Твой Социальный Код.',
+    `%cRESOnation %c· ${tagline}`,
     'font-size:18px;font-weight:900;color:#007AFF;',
     'font-size:12px;color:#666;'
   );

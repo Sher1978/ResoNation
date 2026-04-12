@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RESOnation — Твоё племя. Твой Социальный Код.</title>
+  <meta name="description" content="Найди партнёров, друзей и единомышленников в 32 раза быстрее. Дешифровка Социального Кода для предпринимателей и визионеров Дананга." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════ NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">
+        <span class="logo-reso">RESO</span><span class="logo-nation">nation</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#problem">Проблема</a></li>
+        <li><a href="#math">Математика</a></li>
+        <li><a href="#tools">Инструменты</a></li>
+        <li><a href="#events">События</a></li>
+        <li><a href="#architect">Шер</a></li>
+      </ul>
+      <a href="https://t.me/" id="nav-cta" class="btn btn--primary btn--sm">Войти в Поле</a>
+      <button class="nav__burger" id="nav-burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="nav-mobile">
+      <a href="#problem">Проблема</a>
+      <a href="#math">Математика</a>
+      <a href="#tools">Инструменты</a>
+      <a href="#events">События</a>
+      <a href="#architect">Шер</a>
+      <a href="https://t.me/" class="btn btn--primary">Войти в Поле</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════ HERO -->
+  <section class="hero" id="hero">
+    <!-- Photo background -->
+    <div class="hero__photo-bg">
+      <img src="img-hero-crowd.png" alt="Networking event Da Nang" />
+    </div>
+
+    <!-- Animated canvas background -->
+    <canvas class="hero__canvas" id="resonance-canvas"></canvas>
+
+    <!-- Grid overlay -->
+    <div class="hero__grid"></div>
+
+    <div class="hero__content">
+      <div class="hero__tag">
+        <span class="pulse-dot"></span>
+        Данаг · Social Code · 2025
+      </div>
+
+      <h1 class="hero__title">
+        <span class="hero__reso">RESO</span><span class="hero__nation">nation</span>
+      </h1>
+
+      <p class="hero__slogan">Твоё племя. Твой Социальный Код.<br/>Математика идеальных сцепок.</p>
+
+      <p class="hero__body">
+        В Дананге тысячи людей, но лишь единицы резонируют с тобой на 100%.<br/>
+        Мы убрали фактор случайности. Найди партнёров, друзей и единомышленников
+        в <strong>32 раза</strong> быстрее.
+      </p>
+
+      <div class="hero__actions">
+        <a href="https://t.me/" id="hero-cta" class="btn btn--primary btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Войти в Поле встреч
+        </a>
+        <a href="#math" class="btn btn--ghost btn--lg">Узнать математику</a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num">×32</span>
+          <span class="stat__label">Быстрее поиска «своих»</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">1+1=11</span>
+          <span class="stat__label">Формула резонанса</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">0%</span>
+          <span class="stat__label">Социального трения</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.5"/><circle class="scroll-wheel" cx="8" cy="7" r="2" fill="currentColor" fill-opacity="0.6"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ PROBLEM -->
+  <section class="section problem" id="problem">
+    <div class="section__container">
+      <div class="section__header">
+        <span class="section__label">Социальное трение</span>
+        <h2 class="section__title">Почему поиск «своих»<br/>превращается в рутину?</h2>
+        <p class="section__sub">
+          В обычной среде <strong>80% времени</strong> уходит на «притирку», маски и попытки понять друг друга.
+          Это социальное трение, которое сжигает твой потенциал.
+        </p>
+      </div>
+
+      <!-- Engine metaphor -->
+      <div class="engine-diagram">
+        <div class="engine__core">
+          <div class="engine__ring engine__ring--1"></div>
+          <div class="engine__ring engine__ring--2"></div>
+          <div class="engine__ring engine__ring--3"></div>
+          <div class="engine__center">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="18" stroke="#007AFF" stroke-width="1.5"/>
+              <path d="M12 20 L28 20 M20 12 L20 28" stroke="#FF8C42" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="friction-items">
+          <div class="friction-item" data-delay="0">
+            <div class="friction-item__spark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B3B" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <span>Маски и ролевые игры</span>
+          </div>
+          <div class="friction-item" data-delay="100">
+            <div class="friction-item__spark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B3B" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <span>Притирка кодов</span>
+          </div>
+          <div class="friction-item" data-delay="200">
+            <div class="friction-item__spark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B3B" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <span>Потеря энергии</span>
+          </div>
+          <div class="friction-item" data-delay="300">
+            <div class="friction-item__spark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <span>Выгорание потенциала</span>
+          </div>
+        </div>
+
+        <div class="engine-label">
+          <span>80% энергии → в «искры»</span>
+          <span class="engine-label__sub">Только 20% — на результат</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ PHOTO STRIP -->
+  <section class="photo-strip">
+    <div class="photo-strip__label">
+      <span class="pulse-dot"></span>
+      Живые моменты сообщества
+    </div>
+    <div class="photo-strip__track">
+      <!-- Original 5 -->
+      <div class="photo-strip__item">
+        <img src="img-breakfast.png" alt="Resonance Breakfast" />
+        <div class="photo-strip__overlay">
+          <span>Resonance Breakfast</span>
+        </div>
+      </div>
+      <div class="photo-strip__item photo-strip__item--wide">
+        <img src="img-match-night.png" alt="Connection Match Night" />
+        <div class="photo-strip__overlay">
+          <span>Connection Match Night</span>
+        </div>
+      </div>
+      <div class="photo-strip__item">
+        <img src="img-shadow-lab.png" alt="Shadow Lab" />
+        <div class="photo-strip__overlay">
+          <span>Shadow Lab</span>
+        </div>
+      </div>
+      <div class="photo-strip__item">
+        <img src="img-connection.png" alt="Момент резонанса" />
+        <div class="photo-strip__overlay">
+          <span>Момент резонанса</span>
+        </div>
+      </div>
+      <div class="photo-strip__item photo-strip__item--wide">
+        <img src="img-sovereigns.png" alt="Sovereigns Community" />
+        <div class="photo-strip__overlay">
+          <span>Sovereigns Community</span>
+        </div>
+      </div>
+      <!-- New 4 -->
+      <div class="photo-strip__item">
+        <img src="img-mastermind.png" alt="Resonation Mastermind" />
+        <div class="photo-strip__overlay">
+          <span>Mastermind Session</span>
+        </div>
+      </div>
+      <div class="photo-strip__item photo-strip__item--wide">
+        <img src="img-dinner.png" alt="Resonation Dinner" />
+        <div class="photo-strip__overlay">
+          <span>Premium Dinner</span>
+        </div>
+      </div>
+      <div class="photo-strip__item">
+        <img src="img-workshop-v2.png" alt="Creative Workshop" />
+        <div class="photo-strip__overlay">
+          <span>Creative Workshop</span>
+        </div>
+      </div>
+      <div class="photo-strip__item">
+        <img src="img-networking-rooftop.png" alt="Rooftop Networking" />
+        <div class="photo-strip__overlay">
+          <span>Rooftop Networking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ MATH -->
+  <section class="section math-section" id="math">
+    <div class="section__container">
+      <div class="section__header">
+        <span class="section__label">Формула резонанса</span>
+        <h2 class="section__title">Здесь 1 + 1 = <span class="glow-11">11</span></h2>
+        <p class="section__sub">Команда, собранная по Коду — это множитель, а не сумма.</p>
+      </div>
+
+      <div class="math-cards">
+        <!-- 0 -->
+        <div class="math-card math-card--conflict" data-result="0">
+          <div class="math-card__formula">
+            <span class="formula-num">1</span>
+            <span class="formula-op">+</span>
+            <span class="formula-num">1</span>
+            <span class="formula-eq">=</span>
+            <span class="formula-result result--zero">0</span>
+          </div>
+          <div class="math-card__icon">❌</div>
+          <h3 class="math-card__title">Конфликт кодов</h3>
+          <p class="math-card__desc">Энергия тратится на внутреннюю войну. Вы обнуляете результаты друг друга.</p>
+          <div class="math-card__bar">
+            <div class="math-card__fill" style="width: 5%"></div>
+          </div>
+          <span class="math-card__efficiency">Эффективность: 0%</span>
+        </div>
+
+        <!-- 1.5 -->
+        <div class="math-card math-card--partial" data-result="1.5">
+          <div class="math-card__formula">
+            <span class="formula-num">1</span>
+            <span class="formula-op">+</span>
+            <span class="formula-num">1</span>
+            <span class="formula-eq">=</span>
+            <span class="formula-result result--partial">1.5</span>
+          </div>
+          <div class="math-card__icon">⚠️</div>
+          <h3 class="math-card__title">Неполное совпадение</h3>
+          <p class="math-card__desc">Режим постоянных проверок и уточнений. Вы теряете скорость.</p>
+          <div class="math-card__bar">
+            <div class="math-card__fill" style="width: 40%"></div>
+          </div>
+          <span class="math-card__efficiency">Эффективность: 40%</span>
+        </div>
+
+        <!-- 11 -->
+        <div class="math-card math-card--resonance" data-result="11">
+          <div class="math-card__badge">Цель ✦</div>
+          <div class="math-card__formula">
+            <span class="formula-num">1</span>
+            <span class="formula-op">+</span>
+            <span class="formula-num">1</span>
+            <span class="formula-eq">=</span>
+            <span class="formula-result result--eleven">11</span>
+          </div>
+          <div class="math-card__icon">💎</div>
+          <h3 class="math-card__title">Резонанс</h3>
+          <p class="math-card__desc">Когда пазл Социального Кода сошелся, энергия направлена только вовне. Ваша общая мощность растёт в 10 раз.</p>
+          <div class="math-card__bar">
+            <div class="math-card__fill math-card__fill--glow" style="width: 100%"></div>
+          </div>
+          <span class="math-card__efficiency">Эффективность: 1000%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ TOOLS -->
+  <section class="section tools-section" id="tools">
+    <div class="section__container">
+      <div class="section__header">
+        <span class="section__label">Инструменты Силы</span>
+        <h2 class="section__title">Технологии<br/>точного резонанса</h2>
+      </div>
+
+      <div class="tools-grid">
+        <!-- Social Code -->
+        <div class="tool-card tool-card--code">
+          <div class="tool-card__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="18" stroke="#007AFF" stroke-width="1.5" stroke-dasharray="4 2"/>
+              <circle cx="20" cy="20" r="10" stroke="#007AFF" stroke-width="1" opacity="0.5"/>
+              <circle cx="20" cy="20" r="4" fill="#007AFF"/>
+              <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="tool-card__tag">Внешнее</span>
+          <h3 class="tool-card__title">Социальный Код</h3>
+          <p class="tool-card__desc">
+            Дешифровка твоей природы. Радар для поиска тех, кто усиливает тебя в бизнесе, дружбе и жизни.
+          </p>
+          <ul class="tool-card__features">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Профиль Социального Кода
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Карта совместимостей
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Алгоритм подбора партнёров
+            </li>
+          </ul>
+          <a href="https://t.me/" class="tool-card__cta">Узнать свой Код →</a>
+        </div>
+
+        <!-- Shadow Audit -->
+        <div class="tool-card tool-card--shadow">
+          <div class="tool-card__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 4 L36 32 L4 32 Z" stroke="#FF8C42" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M20 12 L28 28 L12 28 Z" stroke="#FF8C42" stroke-width="1" opacity="0.4" stroke-linejoin="round"/>
+              <circle cx="20" cy="26" r="2" fill="#FF8C42"/>
+              <path d="M20 16 L20 22" stroke="#FF8C42" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="tool-card__tag tool-card__tag--copper">Внутреннее</span>
+          <h3 class="tool-card__title">Теневой Аудит</h3>
+          <p class="tool-card__desc">
+            Инвентаризация скрытых активов. Удаление «багов» прошивки для возврата 100% личной эффективности.
+          </p>
+          <ul class="tool-card__features">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Диагностика скрытых ограничений
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Дебаггинг поведенческих «вирусов»
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Восстановление 100% КПД
+            </li>
+          </ul>
+          <a href="https://t.me/" class="tool-card__cta tool-card__cta--copper">Пройти аудит →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background decoration -->
+    <div class="tools-section__bg">
+      <canvas id="tools-canvas"></canvas>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ NATION -->
+  <section class="section nation-section" id="nation">
+    <div class="section__container">
+      <div class="nation-content">
+        <div class="nation-text">
+          <span class="section__label">Для кого это?</span>
+          <h2 class="nation__title">RESOnation —<br/>среда для <em>Sovereigns</em></h2>
+          <p class="nation__body">
+            Предпринимателей, творцов и визионеров, которые переросли случайные связи
+            и ценят глубину. Мы соединяем <strong>мужскую силу</strong> и <strong>женский магнетизм</strong>
+            через точность алгоритмов.
+          </p>
+          <div class="nation__pillars">
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <strong>80%</strong> осознанные женщины
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--copper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div>
+                <strong>20%</strong> сильные мужчины
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+              </div>
+              <div>
+                Экспаты и локальный бизнес
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nation-visual">
+          <div class="nation-photo-stack">
+            <div class="nation-photo-main">
+              <img src="img-sovereigns.png" alt="RESOnation Sovereigns community" />
+              <div class="nation-photo-main__overlay"></div>
+            </div>
+            <div class="nation-photo-secondary">
+              <img src="img-connection.png" alt="Момент резонанса" />
+            </div>
+            <div class="nation-photo-badge">
+              <div class="nation-photo-badge__num">×32</div>
+              <div class="nation-photo-badge__label">быстрее сцепки</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ EVENTS -->
+  <section class="section events-section" id="events">
+    <div class="section__container">
+      <div class="section__header">
+        <span class="section__label">Живые встречи</span>
+        <h2 class="section__title">Лаборатория Резонанса</h2>
+        <p class="section__sub">
+          Мы не продаём «доступ в клуб». Мы приглашаем на открытые ивенты,
+          где вы за час закрываете запросы, на которые уходят месяцы.
+        </p>
+      </div>
+
+      <div class="events-grid">
+        <!-- Event 1 -->
+        <article class="event-card" id="event-breakfast">
+          <div class="event-card__cover">
+            <img src="img-breakfast.png" alt="Resonance Breakfast" />
+            <div class="event-card__cover-overlay"></div>
+          </div>
+          <div class="event-card__body">
+            <div class="event-card__number">01</div>
+            <div class="event-card__glow event-card__glow--blue"></div>
+            <div class="event-card__meta">
+              <span class="event-tag">Networking</span>
+              <span class="event-tag">Morning</span>
+            </div>
+            <h3 class="event-card__title">Resonance Breakfast</h3>
+            <p class="event-card__desc">
+              Знакомство, снятие масок, метод 3-2-1. Начни неделю с резонирующих связей.
+            </p>
+            <div class="event-card__details">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                2 часа
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                8–12 участников
+              </span>
+            </div>
+            <a href="https://t.me/" class="btn btn--primary btn--sm event-card__cta" id="breakfast-cta">Занять место</a>
+          </div>
+        </article>
+
+        <!-- Event 2 -->
+        <article class="event-card event-card--featured" id="event-match">
+          <div class="event-card__cover">
+            <img src="img-match-night.png" alt="Connection Match Night" />
+            <div class="event-card__cover-overlay event-card__cover-overlay--copper"></div>
+          </div>
+          <div class="event-card__body">
+            <div class="event-card__number">02</div>
+            <div class="event-card__badge">Флагман</div>
+            <div class="event-card__glow event-card__glow--copper"></div>
+            <div class="event-card__meta">
+              <span class="event-tag event-tag--copper">Code Matching</span>
+              <span class="event-tag event-tag--copper">Evening</span>
+            </div>
+            <h3 class="event-card__title">Connection Match Night</h3>
+            <p class="event-card__desc">
+              Вечер сцепок по Социальному Коду. Алгоритм соединяет тех, чьи коды дают эффект умножения.
+            </p>
+            <div class="event-card__details">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                3 часа
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                До 20 участников
+              </span>
+            </div>
+            <a href="https://t.me/" class="btn btn--primary btn--sm event-card__cta" id="match-cta">Занять место</a>
+          </div>
+        </article>
+
+        <!-- Event 3 -->
+        <article class="event-card" id="event-shadow">
+          <div class="event-card__cover">
+            <img src="img-shadow-lab.png" alt="Shadow Lab" />
+            <div class="event-card__cover-overlay"></div>
+          </div>
+          <div class="event-card__body">
+            <div class="event-card__number">03</div>
+            <div class="event-card__glow event-card__glow--blue"></div>
+            <div class="event-card__meta">
+              <span class="event-tag">Workshop</span>
+              <span class="event-tag">Deep Work</span>
+            </div>
+            <h3 class="event-card__title">Shadow Lab</h3>
+            <p class="event-card__desc">
+              Воркшоп по личной эффективности. Находим скрытые активы и удаляем «баги» прошивки.
+            </p>
+            <div class="event-card__details">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                4 часа
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                6 участников
+              </span>
+            </div>
+            <a href="https://t.me/" class="btn btn--primary btn--sm event-card__cta" id="shadow-cta">Занять место</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ ARCHITECT -->
+  <section class="section architect-section" id="architect">
+    <div class="section__container">
+      <div class="architect-content">
+
+        <div class="architect-photo">
+          <div class="architect-photo__frame">
+            <div class="architect-photo__rings">
+              <div class="arch-ring arch-ring--1"></div>
+              <div class="arch-ring arch-ring--2"></div>
+            </div>
+            <div class="architect-photo__img">
+              <img src="img-architect.png" alt="Шер — Архитектор смыслов и Хранитель Поля" />
+            </div>
+            <div class="architect-photo__badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Verified Architect
+            </div>
+          </div>
+        </div>
+
+        <div class="architect-text">
+          <span class="section__label">Создатель Поля</span>
+          <h2 class="architect__name">Шер</h2>
+          <p class="architect__role">Архитектор смыслов · Хранитель Поля</p>
+
+          <blockquote class="architect-quote">
+            <svg class="quote-mark" width="32" height="24" viewBox="0 0 32 24" fill="none">
+              <path d="M0 24V14C0 8 3.33 3.33 10 0L12 3C8 5 6 8 6 12H12V24H0ZM20 24V14C20 8 23.33 3.33 30 0L32 3C28 5 26 8 26 12H32V24H20Z" fill="#007AFF" opacity="0.3"/>
+            </svg>
+            <p>Я — Шер. Архитектор смыслов и Хранитель Поля. Моя миссия — создавать сверхпроводящую среду для людей будущего. Я не учу вас жить, я настраиваю вашу систему на максимальный результат без трения.</p>
+          </blockquote>
+
+          <div class="architect-tags">
+            <span class="arch-tag">Social Code Creator</span>
+            <span class="arch-tag">Da Nang • Dubai</span>
+            <span class="arch-tag">Shadow Audit</span>
+            <span class="arch-tag">Визионер</span>
+          </div>
+
+          <a href="https://t.me/" id="architect-cta" class="btn btn--primary">
+            Связаться с Шером
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ FINAL CTA -->
+  <section class="section final-cta" id="final-cta">
+    <div class="final-cta__photo-bg">
+      <img src="img-hero-crowd.png" alt="RESOnation community" />
+    </div>
+    <canvas class="final-cta__canvas" id="cta-canvas"></canvas>
+    <div class="section__container">
+      <div class="final-cta__connection-img">
+        <img src="img-connection.png" alt="Момент резонанса" />
+      </div>
+      <h2 class="final-cta__title">Готов войти в Поле?</h2>
+      <p class="final-cta__sub">Первый шаг — узнать свой Социальный Код.</p>
+      <a href="https://t.me/" id="final-cta-btn" class="btn btn--primary btn--xl">
+        Войти в Поле встреч
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      </a>
+      <p class="final-cta__note">Бесплатно · Без обязательств · Данаг или онлайн</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="logo-reso">RESO</span><span class="logo-nation">nation</span>
+        <p>Твоё племя. Твой Социальный Код.</p>
+      </div>
+      <div class="footer__links">
+        <a href="#hero">Главная</a>
+        <a href="#problem">Проблема</a>
+        <a href="#math">Математика</a>
+        <a href="#events">События</a>
+        <a href="https://t.me/">Telegram</a>
+      </div>
+      <div class="footer__copy">
+        © 2025 RESOnation · Данаг, Вьетнам · Все права защищены
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

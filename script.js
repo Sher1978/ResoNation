@@ -411,10 +411,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       update(beamAngle) {
         // Chaotic movement - 2x slower
-        this.vx += (Math.random() - 0.5) * 0.01; // Reduced from 0.02
-        this.vy += (Math.random() - 0.5) * 0.01; // Reduced from 0.02
-        this.vx = Math.max(-0.15, Math.min(0.15, this.vx)); // Caps reduced from 0.3
-        this.vy = Math.max(-0.15, Math.min(0.15, this.vy)); // Caps reduced from 0.3
+        this.vx += (Math.random() - 0.5) * 0.01;
+        this.vy += (Math.random() - 0.5) * 0.01;
+        this.vx = Math.max(-0.15, Math.min(0.15, this.vx));
+        this.vy = Math.max(-0.15, Math.min(0.15, this.vy));
         
         this.x += this.vx;
         this.y += this.vy;
@@ -433,17 +433,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Apply position and rotation to silhouette
-        const dotAngle = Math.atan2(this.y - centerY, this.x - centerX) * (180 / Math.PI);
-        this.el.setAttribute('transform', `translate(${this.x}, ${this.y}) rotate(${dotAngle + 90})`);
+        const dotAngleDeg = Math.atan2(this.y - centerY, this.x - centerX) * (180 / Math.PI);
+        this.el.setAttribute('transform', `translate(${this.x}, ${this.y}) rotate(${dotAngleDeg + 90})`);
 
-        // Flash check
-        // Radar sweep is 4s, so 90 deg/s. 
-        // We normalize beamAngle to 0-360
-        let normalizedDotAngle = (dotAngle + 360) % 360;
-        let diff = Math.abs(normalizedDotAngle - beamAngle);
-        if (diff > 180) diff = 360 - diff;
+        // Flash check (Synchronized Sector)
+        const normalizedDot = (dotAngleDeg + 360) % 360;
+        const start = (beamAngle - 45 + 360) % 360;
+        const end = beamAngle % 360;
         
-        if (diff < 15) {
+        let lit = false;
+        if (start > end) {
+          // Sector wraps through 0/360
+          if (normalizedDot >= start || normalizedDot <= end) lit = true;
+        } else {
+          if (normalizedDot >= start && normalizedDot <= end) lit = true;
+        }
+        
+        if (lit) {
           this.el.classList.add('is-lit');
         } else {
           this.el.classList.remove('is-lit');
@@ -451,12 +457,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Figures & Sweep Sync
+    const sweepEl = document.querySelector('.scanner__sweep');
+
     // Init dots
     colors.forEach(c => dots.push(new RadarDot(c)));
 
     const animateRadar = (time) => {
       // Beam angle: 4s loop -> 0 to 360
       const beamAngle = (time % 4000) / 4000 * 360;
+      
+      // Update sweep rotation visually
+      if (sweepEl) {
+        sweepEl.setAttribute('transform', `rotate(${beamAngle}, 100, 100)`);
+      }
+
       dots.forEach(d => d.update(beamAngle));
       requestAnimationFrame(animateRadar);
     };

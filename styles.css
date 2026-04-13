@@ -449,8 +449,7 @@ h1, h2, h3, h4 {
   animation: engineSpin 10s linear infinite reverse;
 }
 .scanner__sweep {
-  transform-origin: center;
-  /* Driven by JS for sync */
+  /* Driven by JS for sync with correct pivot in SVG attribute */
 }
 .scanner__center {
   transform-origin: center;

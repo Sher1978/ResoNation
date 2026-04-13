@@ -4,6 +4,64 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── THEME MANAGER ────────────────────────────── */
+  class ThemeManager {
+    constructor() {
+      this.theme = localStorage.getItem('theme') || 
+                   (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      this.init();
+    }
+
+    init() {
+      this.applyTheme();
+      
+      // Desktop toggle
+      const toggle = document.getElementById('theme-toggle');
+      toggle?.addEventListener('click', () => this.toggleTheme());
+
+      // Mobile toggle
+      const toggleMobile = document.getElementById('theme-toggle-mobile');
+      toggleMobile?.addEventListener('click', () => this.toggleTheme());
+
+      // Listen for system changes
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+          this.theme = e.matches ? 'light' : 'dark';
+          this.applyTheme();
+        }
+      });
+    }
+
+    toggleTheme() {
+      this.theme = this.theme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', this.theme);
+      this.applyTheme();
+      
+      // Notify components (like Canvas) to update colors
+      window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: this.theme } }));
+    }
+
+    applyTheme() {
+      document.documentElement.setAttribute('data-theme', this.theme);
+    }
+
+    getColors() {
+      const styles = getComputedStyle(document.documentElement);
+      return {
+        blue: styles.getPropertyValue('--color-blue-rgb').trim() || '0,122,255',
+        copper: styles.getPropertyValue('--color-copper-rgb').trim() || '255,140,66'
+      };
+    }
+  }
+
+  const themeManager = new ThemeManager();
+
+  // ── Shared theme colors (accessible to ALL canvas animations) ──
+  let themeColors = themeManager.getColors();
+  window.addEventListener('themeChanged', () => {
+    themeColors = themeManager.getColors();
+  });
+
   /* ── NAV scroll effect ──────────────────────────── */
   const nav = document.getElementById('nav');
   const burger = document.getElementById('nav-burger');
@@ -36,6 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     resize();
     window.addEventListener('resize', resize);
 
+    // Theme colors shared from outer scope (see top of DOMContentLoaded)
+
     // Wave rings
     class Wave {
       constructor() { this.reset(); }
@@ -46,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.maxR = Math.sqrt(W * W + H * H) * 0.6;
         this.speed = 0.6 + Math.random() * 0.4;
         this.opacity = 0.4;
-        this.color = Math.random() > 0.5 ? '0,122,255' : '255,140,66';
+        this.colorType = Math.random() > 0.5 ? 'blue' : 'copper';
       }
       update() {
         this.r += this.speed;
@@ -56,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${this.color},${this.opacity})`;
+        const rgb = themeColors[this.colorType];
+        ctx.strokeStyle = `rgba(${rgb},${this.opacity})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -72,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.vx = (Math.random() - 0.5) * 0.3;
         this.vy = (Math.random() - 0.5) * 0.3;
         this.opacity = 0.1 + Math.random() * 0.4;
-        this.color = Math.random() > 0.5 ? '0,122,255' : '255,140,66';
+        this.colorType = Math.random() > 0.5 ? 'blue' : 'copper';
       }
       update() {
         this.x += this.vx;
@@ -82,7 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+        const rgb = themeColors[this.colorType];
+        ctx.fillStyle = `rgba(${rgb},${this.opacity})`;
         ctx.fill();
       }
     }
@@ -106,7 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0,122,255,${0.08 * (1 - dist / 120)})`;
+            const rgb = themeColors[particles[i].colorType];
+            ctx.strokeStyle = `rgba(${rgb},${0.08 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -160,14 +223,14 @@ document.addEventListener('DOMContentLoaded', () => {
             tc.beginPath();
             tc.moveTo(nodes[i].x, nodes[i].y);
             tc.lineTo(nodes[j].x, nodes[j].y);
-            tc.strokeStyle = `rgba(0,122,255,${0.06 * (1 - d / 200)})`;
+            tc.strokeStyle = `rgba(${themeColors.blue},${0.06 * (1 - d / 200)})`;
             tc.lineWidth = 0.8;
             tc.stroke();
           }
         }
         tc.beginPath();
         tc.arc(nodes[i].x, nodes[i].y, 1.5, 0, Math.PI * 2);
-        tc.fillStyle = 'rgba(0,122,255,0.25)';
+        tc.fillStyle = `rgba(${themeColors.blue},0.25)`;
         tc.fill();
       }
       requestAnimationFrame(animateTc);
@@ -192,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
         this.r = delay;
         this.maxR = Math.max(cW, cH) * 0.8;
         this.speed = 0.8;
-        this.c = '0,122,255';
       }
       update() {
         this.r += this.speed;
@@ -202,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const op = 0.25 * (1 - this.r / this.maxR);
         cc.beginPath();
         cc.arc(cW / 2, cH / 2, this.r, 0, Math.PI * 2);
-        cc.strokeStyle = `rgba(${this.c},${op})`;
+        cc.strokeStyle = `rgba(${themeColors.blue},${op})`;
         cc.lineWidth = 1;
         cc.stroke();
       }
@@ -365,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── RADAR LIFE ─────────────────────────────────── */
+  /* ── RADAR SCANNER ───────────────────────────────────────── */
   const radarContainer = document.getElementById('scanner-figures');
   if (radarContainer) {
     const DOT_COUNT = 10;

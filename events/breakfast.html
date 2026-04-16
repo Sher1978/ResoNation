@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonance Breakfast | RESOnation</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../events.css">
+    <style>
+        .breakfast-hero {
+            background-image: url('../resonation_breakfast_tribe_v2_1776181056454_1776181065229.png');
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">RESONATION</a>
+            <div class="nav-links">
+                <a href="../index.html">На главную</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="tribe-hero breakfast-hero">
+        <div class="tribe-content">
+            <h1 class="fade-in">Resonance Breakfast</h1>
+            <p class="fade-in-delayed" style="font-size: 1.5rem; opacity: 0.8; margin-top: 1rem;">Утро Распакованных</p>
+            <div style="margin-top: 3rem;">
+                <a href="https://t.me/your_bot" class="neon-btn neon-pulse">Занять место за столом</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-2">
+                <div class="fade-in">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Завтрак, который меняет траекторию дня</h2>
+                    <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 1.5rem;">
+                        Мы верим, что 99% людей вокруг — это скрытый ресурс. Resonance Breakfast — это инструмент для тех, кто готов проявляться без масок. Здесь мы не просто пьем кофе, мы настраиваем резонанс.
+                    </p>
+                    <p style="font-size: 1.1rem; opacity: 0.8;">
+                        Каждый участник проходит через быструю «индукцию», создавая поле возможностей уже к 10 часам утра.
+                    </p>
+                </div>
+                <div class="tribe-image fade-in-delayed">
+                    <img src="../resonation_breakfast_tribe_v2_1776181056454_1776181065229.png" alt="Tribe Breakfast">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: var(--color-base-2);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 4rem;">Методология Индукции 3-2-1</h2>
+            <div class="tribe-gallery">
+                <div class="rules-card">
+                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">3 Ценности</h3>
+                    <p>Коротко о том, чем вы уже полезны миру. Ваш твердый экспертный фундамент.</p>
+                </div>
+                <div class="rules-card">
+                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">2 Цели</h3>
+                    <p>Ваши приоритеты на текущем этапе. То, куда направлен ваш фокус внимания.</p>
+                </div>
+                <div class="rules-card">
+                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">1 Запрос</h3>
+                    <p>Конкретный импульс к группе. Чем Нация может усилить вас сегодня?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 4rem;">Программа Утра</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">08:30 — 09:00</div>
+                    <div class="timeline-title">Сбор и Кофе</div>
+                    <div class="timeline-desc">Мягкий вход в пространство, первые касания и знакомства в интерьере Tech-Zen.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">09:00 — 10:15</div>
+                    <div class="timeline-title">Резонансная Сессия</div>
+                    <div class="timeline-desc">Круг распаковки по методике 3-2-1. Прямые диалоги, где каждый голос услышан.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:15 — 11:00</div>
+                    <div class="timeline-title">Свободный Нетворкинг</div>
+                    <div class="timeline-desc">Обмен контактами, формирование партнерств и закрепление импульсов.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section-padding" style="background: var(--color-base-3); text-align: center;">
+        <h2 style="margin-bottom: 2rem;">Стань частью Нации</h2>
+        <p style="margin-bottom: 3rem; opacity: 0.7;">Только для тех, кто понимает ценность времени и качества окружения.</p>
+        <a href="https://t.me/your_bot" class="neon-btn">Присоединиться к завтраку</a>
+        <p style="margin-top: 4rem; opacity: 0.3; font-size: 0.8rem;">© RESOnation. Engineered for Sovereigns.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in, .fade-in-delayed, .rules-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

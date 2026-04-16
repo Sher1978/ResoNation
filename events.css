@@ -1,0 +1,192 @@
+/* ═══════════════════════════════════════════════════════════
+   RESOnation — Events Design System (Cyber-Neon & Tribe)
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Cyber-Neon Palette Override */
+  --neon-pink: #FF007A;
+  --neon-pink-rgb: 255, 0, 122;
+  --neon-blue: #00F3FF;
+  --neon-blue-rgb: 0, 243, 255;
+  --midnight-navy: #0A0A1F;
+}
+
+/* ── Neon Utilities ───────────────────────────────────────── */
+.neon-text-pink {
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px rgba(var(--neon-pink-rgb), 0.5), 
+               0 0 20px rgba(var(--neon-pink-rgb), 0.3);
+}
+
+.neon-text-blue {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(var(--neon-blue-rgb), 0.5), 
+               0 0 20px rgba(var(--neon-blue-rgb), 0.3);
+}
+
+.neon-border-pink {
+  border: 1px solid var(--neon-pink);
+  box-shadow: 0 0 15px rgba(var(--neon-pink-rgb), 0.2);
+}
+
+.neon-btn {
+  padding: 1rem 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neon-blue);
+  background: transparent;
+  color: var(--neon-blue);
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+.neon-btn:hover {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 30px var(--neon-blue);
+}
+
+.neon-pulse {
+  animation: neon-pulse 2s infinite alternate;
+}
+
+@keyframes neon-pulse {
+  from { opacity: 0.8; }
+  to { opacity: 1; text-shadow: 0 0 15px rgba(var(--neon-blue-rgb), 0.7); }
+}
+
+/* ── Tribe Layouts ────────────────────────────────────────── */
+.tribe-hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 0;
+}
+
+.tribe-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,31, 0.6), var(--midnight-navy));
+}
+
+.tribe-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+
+.section-padding { padding: 6rem 5%; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+@media (max-width: 850px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.tribe-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.tribe-image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.tribe-image img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter 0.5s ease;
+}
+
+.tribe-image:hover img { filter: grayscale(0%); }
+
+/* ── Event Timeline ────────────────────────────────────────── */
+.timeline {
+  max-width: 700px;
+  margin: 4rem auto;
+  position: relative;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2.5rem;
+  padding-bottom: 3rem;
+  border-left: 1px solid var(--color-border);
+}
+
+.timeline-item:last-child { border-left: none; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--neon-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.timeline-time {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neon-blue);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-desc { opacity: 0.7; font-size: 0.95rem; }
+
+/* ── Rules ────────────────────────────────────────────────── */
+.rules-card {
+  background: var(--color-base-2);
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-strong);
+}
+
+.rule-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.rule-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--color-border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 0.8rem;
+}

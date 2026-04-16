@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="../events.css">
     <style>
         .breakfast-hero {
-            background-image: url('../resonation_breakfast_tribe_v2_1776181056454_1776181065229.png');
+            background-image: url('../img-breakfast-standing.png');
+            position: relative;
         }
+        .breakfast-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(110, 69, 226, 0.4) 0%, rgba(33, 212, 253, 0.4) 100%);
+            z-index: 1;
+        }
+        .tribe-content { position: relative; z-index: 2; }
     </style>
 </head>
 <body class="dark-theme">
@@ -24,10 +33,10 @@
 
     <header class="tribe-hero breakfast-hero">
         <div class="tribe-content">
-            <h1 class="fade-in">Resonance Breakfast</h1>
+            <h1 class="fade-in glow-text">Resonance Breakfast</h1>
             <p class="fade-in-delayed" style="font-size: 1.5rem; opacity: 0.8; margin-top: 1rem;">Утро Распакованных</p>
             <div style="margin-top: 3rem;">
-                <a href="https://t.me/your_bot" class="neon-btn neon-pulse">Занять место за столом</a>
+                <a href="https://t.me/your_bot" class="btn btn--primary btn--lg neon-pulse">Вступить в резонанс</a>
             </div>
         </div>
     </header>
@@ -36,36 +45,63 @@
         <div class="container">
             <div class="grid-2">
                 <div class="fade-in">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Завтрак, который меняет траекторию дня</h2>
+                    <h2 class="glow-text" style="font-size: 2.5rem; margin-bottom: 2rem;">Завтрак, который меняет траекторию дня</h2>
                     <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 1.5rem;">
-                        Мы верим, что 99% людей вокруг — это скрытый ресурс. Resonance Breakfast — это инструмент для тех, кто готов проявляться без масок. Здесь мы не просто пьем кофе, мы настраиваем резонанс.
+                        Мы верим, что 99% людей вокруг — это скрытый ресурс. Resonance Breakfast — это инструмент для тех, кто готов проявляться без масок. Здесь мы настраиваем резонанс.
                     </p>
                     <p style="font-size: 1.1rem; opacity: 0.8;">
                         Каждый участник проходит через быструю «индукцию», создавая поле возможностей уже к 10 часам утра.
                     </p>
                 </div>
                 <div class="tribe-image fade-in-delayed">
-                    <img src="../resonation_breakfast_tribe_v2_1776181056454_1776181065229.png" alt="Tribe Breakfast">
+                    <img src="../img-breakfast-standing.png" alt="Tribe Breakfast" style="box-shadow: 0 0 30px rgba(110, 69, 226, 0.3);">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" style="background: var(--color-base-2);">
+    <section class="section-padding" style="background: var(--color-base-2); position: relative; overflow: hidden;">
+        <div class="spark-layer"></div>
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 4rem;">Методология Индукции 3-2-1</h2>
+            <h2 class="glow-text" style="text-align: center; margin-bottom: 4rem;">Методология Индукции 3-2-1</h2>
             <div class="tribe-gallery">
-                <div class="rules-card">
-                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">3 Ценности</h3>
+                <div class="glass-card rules-card">
+                    <h3 style="color: var(--neon-purple); margin-bottom: 1rem;">3 Ценности</h3>
                     <p>Коротко о том, чем вы уже полезны миру. Ваш твердый экспертный фундамент.</p>
                 </div>
-                <div class="rules-card">
+                <div class="glass-card rules-card">
                     <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">2 Цели</h3>
                     <p>Ваши приоритеты на текущем этапе. То, куда направлен ваш фокус внимания.</p>
                 </div>
-                <div class="rules-card">
-                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">1 Запрос</h3>
+                <div class="glass-card rules-card">
+                    <h3 style="color: var(--neon-cyan); margin-bottom: 1rem;">1 Запрос</h3>
                     <p>Конкретный импульс к группе. Чем Нация может усилить вас сегодня?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Purity Layer -->
+    <section class="section-padding protocol-section">
+        <div class="container">
+            <div class="protocol-card glass-card">
+                <div class="protocol-badge">Active Protocol</div>
+                <h2 class="glow-text">Social Purity Protocol</h2>
+                <div class="protocol-grid">
+                    <div class="protocol-item">
+                        <div class="protocol-icon">📵</div>
+                        <div>
+                            <h4>Phone Handover</h4>
+                            <p>Мы сдаем телефоны на входе. Никаких уведомлений, никакого «просто проверю почту». Только вы и 100% присутствия.</p>
+                        </div>
+                    </div>
+                    <div class="protocol-item">
+                        <div class="protocol-icon">🕴️</div>
+                        <div>
+                            <h4>Standing Only</h4>
+                            <p>Никаких тяжелых столов и «удобного» сидения. Мы стоим, перемещаемся и поддерживаем высокий уровень энергии.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,10 +130,10 @@
         </div>
     </section>
 
-    <footer class="section-padding" style="background: var(--color-base-3); text-align: center;">
-        <h2 style="margin-bottom: 2rem;">Стань частью Нации</h2>
+    <footer class="section-padding" style="background: var(--color-base-3); text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+        <h2 class="glow-text" style="margin-bottom: 2rem;">Стань частью Нации</h2>
         <p style="margin-bottom: 3rem; opacity: 0.7;">Только для тех, кто понимает ценность времени и качества окружения.</p>
-        <a href="https://t.me/your_bot" class="neon-btn">Присоединиться к завтраку</a>
+        <a href="https://t.me/your_bot" class="btn btn--primary btn--lg neon-pulse">Присоединиться</a>
         <p style="margin-top: 4rem; opacity: 0.3; font-size: 0.8rem;">© RESOnation. Engineered for Sovereigns.</p>
     </footer>
 

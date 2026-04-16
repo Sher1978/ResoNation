@@ -9,6 +9,9 @@
   --neon-blue: #00F3FF;
   --neon-blue-rgb: 0, 243, 255;
   --midnight-navy: #0A0A1F;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(15px);
 }
 
 /* ── Neon Utilities ───────────────────────────────────────── */
@@ -59,6 +62,46 @@
 @keyframes neon-pulse {
   from { opacity: 0.8; }
   to { opacity: 1; text-shadow: 0 0 15px rgba(var(--neon-blue-rgb), 0.7); }
+}
+
+/* ── Glassmorphism & Effects ────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.spark-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: spark-fly 3s infinite linear;
+}
+
+@keyframes spark-fly {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(-100px) translateX(var(--tx, 20px)); opacity: 0; }
 }
 
 /* ── Tribe Layouts ────────────────────────────────────────── */
@@ -166,10 +209,21 @@
 
 /* ── Rules ────────────────────────────────────────────────── */
 .rules-card {
-  background: var(--color-base-2);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
   padding: 3rem;
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.protocol-highlight {
+  background: linear-gradient(90deg, transparent, rgba(var(--neon-blue-rgb), 0.1), transparent);
+  border-left: 3px solid var(--neon-blue);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 .rule-item {

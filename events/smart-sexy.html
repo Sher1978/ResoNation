@@ -9,24 +9,37 @@
     <style>
         body { background-color: var(--midnight-navy); color: var(--color-text); }
         .sexy-hero {
-            background-image: url('../smart_sexy_tribe_bar_v3_1776181056453_1776181042019.png');
+            background-image: url('../img-smart-sexy-standing-1.png');
         }
         .accent-sexy { color: var(--neon-pink); }
         .accent-smart { color: var(--neon-blue); }
         
-        .ticket-card {
-            background: rgba(30, 30, 39, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-xl);
-            padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
+        /* Local Overrides */
+        .ticket-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .ticket-card.featured {
             border: 1px solid var(--neon-pink);
-            box-shadow: 0 0 30px rgba(var(--neon-pink-rgb), 0.1);
+            box-shadow: 0 0 30px rgba(255, 0, 122, 0.15);
         }
-        .ticket-card:hover { transform: scale(1.02); border-color: var(--neon-blue); }
+        .ticket-card:hover { transform: scale(1.05) translateY(-5px); border-color: var(--neon-blue); }
+        
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        
+        .protocol-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--neon-blue);
+        }
     </style>
 </head>
 <body class="dark-theme">
@@ -40,8 +53,15 @@
     </nav>
 
     <header class="tribe-hero sexy-hero">
+        <div class="spark-layer">
+            <div class="spark" style="left:10%; --tx: 30px; animation-delay: 0s;"></div>
+            <div class="spark" style="left:30%; --tx: -20px; animation-delay: 1s;"></div>
+            <div class="spark" style="left:50%; --tx: 40px; animation-delay: 0.5s;"></div>
+            <div class="spark" style="left:80%; --tx: -30px; animation-delay: 1.5s;"></div>
+        </div>
         <div class="tribe-content">
-            <h1 class="fade-in"><span class="neon-text-blue">Smart</span> & <span class="neon-text-pink">Sexy</span> Night</h1>
+            <div class="protocol-badge fade-in">Hign-Fidelity Presence</div>
+            <h1 class="hero-title fade-in"><span class="neon-text-blue">Smart</span> & <span class="neon-text-pink">Sexy</span> Night</h1>
             <p class="fade-in-delayed" style="font-size: 1.5rem; opacity: 0.8; margin-top: 1rem;">Вечер для тех, кто ищет глубину и искру</p>
             <div style="margin-top: 3rem;">
                 <a href="https://t.me/your_bot" class="neon-btn neon-pulse" style="border-color: var(--neon-pink); color: var(--neon-pink);">Вступить в Нацию Ночи</a>
@@ -52,8 +72,8 @@
     <section class="section-padding">
         <div class="container">
             <div class="grid-2">
-                <div class="tribe-image fade-in">
-                    <img src="../smart_sexy_tribe_bar_v3_1776181056453_1776181042019.png" alt="Tribe at the Bar">
+                <div class="tribe-image fade-in glass-card">
+                    <img src="../img-smart-sexy-standing-2.png" alt="Tribe at the Bar">
                 </div>
                 <div class="fade-in-delayed">
                     <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Интеллект — это новая сексуальность</h2>
@@ -110,7 +130,7 @@
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 4rem;">Наши Правила</h2>
             <div class="grid-2">
-                <div class="rules-card">
+                <div class="rules-card glass-card">
                     <div class="rule-item">
                         <div class="rule-icon">1</div>
                         <div>
@@ -121,12 +141,12 @@
                     <div class="rule-item">
                         <div class="rule-icon">2</div>
                         <div>
-                            <h4>Radical Presence</h4>
-                            <p style="opacity: 0.7;">Телефоны остаются в режиме ожидания. Мы ценим живое присутствие здесь и сейчас.</p>
+                            <h4>Social Purity Protocol</h4>
+                            <p style="opacity: 0.7;">Живое присутствие требует тишины от технологий. Телефоны сдаются на входе для полной концентрации на моменте.</p>
                         </div>
                     </div>
                 </div>
-                <div class="rules-card">
+                <div class="rules-card glass-card">
                     <div class="rule-item">
                         <div class="rule-icon">3</div>
                         <div>
@@ -150,12 +170,12 @@
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 4rem;">Выбор участия</h2>
             <div class="tribe-gallery" style="max-width: 900px; margin: 0 auto;">
-                <div class="ticket-card">
+                <div class="ticket-card glass-card">
                     <h3 style="margin-bottom: 1rem;">Solo Sovereign</h3>
                     <p style="opacity: 0.6; margin-bottom: 2rem;">Для тех, кто готов к новым невероятным встречам с нуля. Полная индукция в Нацию.</p>
                     <a href="https://t.me/your_bot" class="neon-btn" style="width: 100%;">Зарегистрироваться</a>
                 </div>
-                <div class="ticket-card featured">
+                <div class="ticket-card featured glass-card">
                     <h3 class="accent-sexy" style="margin-bottom: 1rem;">Power Couple</h3>
                     <p style="opacity: 0.6; margin-bottom: 2rem;">Для пар, желающих обновить резонанс и войти в сообщество сильных людей вместе. Спеццена.</p>
                     <a href="https://t.me/your_bot" class="neon-btn" style="width: 100%; border-color: var(--neon-pink); color: var(--neon-pink);">Регистрация парой</a>

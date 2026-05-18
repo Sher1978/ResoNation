@@ -1823,3 +1823,78 @@ h1, h2, h3, h4 {
   .photo-strip__item  { width: 190px; height: 230px; }
   .photo-strip__item--wide { width: 260px; }
 }
+
+/* ==========================================================================
+   Smart & Sexy Featured Card Theme (Pink & Accent Blue)
+   ========================================================================== */
+:root {
+  --color-pink:       #FF007A;
+  --color-pink-rgb:   255, 0, 122;
+  --color-pink-glow:  rgba(255, 0, 122, 0.22);
+  --color-pink-dim:   rgba(255, 0, 122, 0.10);
+  --shadow-pink-blue: 0 8px 32px rgba(255, 0, 122, 0.18), 0 0 80px rgba(33, 212, 253, 0.08);
+}
+
+[data-theme="light"] {
+  --color-pink:       #D80064;
+  --color-pink-rgb:   216, 0, 100;
+  --color-pink-glow:  rgba(216, 0, 100, 0.12);
+  --color-pink-dim:   rgba(216, 0, 100, 0.07);
+  --shadow-pink-blue: 0 8px 32px rgba(216, 0, 100, 0.14), 0 0 80px rgba(27, 95, 173, 0.05);
+}
+
+.event-card--sexy {
+  border-color: var(--color-pink-glow) !important;
+  background: linear-gradient(160deg, var(--color-pink-dim), var(--color-base-3)) !important;
+}
+
+.event-card--sexy:hover {
+  border-color: var(--color-pink) !important;
+  box-shadow: var(--shadow-pink-blue) !important;
+}
+
+.event-card__badge--pink {
+  color: var(--color-pink) !important;
+  background: var(--color-pink-dim) !important;
+  border: 1px solid rgba(255, 0, 122, 0.25) !important;
+}
+
+.event-card__glow--pink {
+  background: var(--color-pink) !important;
+}
+
+.event-tag--pink {
+  color: var(--color-pink) !important;
+  background: var(--color-pink-dim) !important;
+}
+
+.event-card__cover-overlay--pink-blue {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 0, 122, 0.15) 0%,
+    transparent 35%,
+    rgba(26, 26, 27, 0.9) 100%
+  ) !important;
+}
+
+[data-theme="light"] .event-card__cover-overlay--pink-blue {
+  background: linear-gradient(
+    180deg,
+    rgba(216, 0, 100, 0.08) 0%,
+    transparent 35%,
+    rgba(245, 242, 236, 0.9) 100%
+  ) !important;
+}
+
+.btn--pink-blue {
+  background: linear-gradient(135deg, var(--color-pink), var(--color-blue)) !important;
+  color: #fff !important;
+  box-shadow: 0 0 24px var(--color-pink-glow), 0 4px 14px var(--color-blue-glow) !important;
+}
+
+.btn--pink-blue:hover {
+  filter: brightness(1.1) !important;
+  box-shadow: 0 0 40px rgba(255, 0, 122, 0.45), 0 8px 24px rgba(33, 212, 253, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+

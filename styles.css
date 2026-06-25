@@ -56,37 +56,38 @@
 
 /* ═══ LIGHT THEME — Light Reflect Aesthetic ═══ */
 [data-theme="light"] {
-  --color-base:   #F6F5FA;
-  --color-base-2: #FFFFFF;
-  --color-base-3: rgba(240, 238, 245, 0.8);
+  /* Premium Slate-grey bases for depth and solid presence */
+  --color-base:   #D6D4DE; /* refined medium slate-grey */
+  --color-base-2: #E5E3EB; /* slightly lighter slate-grey alternating background */
+  --color-base-3: rgba(255, 255, 255, 0.45); /* translucent track bg */
 
-  /* Deep Indigo Accent */
-  --color-blue:      #4F46E5;
-  --color-blue-rgb:  79, 70, 229;
-  --color-blue-glow: rgba(79, 70, 229, 0.1);
-  --color-blue-dim:  rgba(79, 70, 229, 0.06);
+  /* Deep Indigo Accent for rich contrast */
+  --color-blue:      #3628D5; 
+  --color-blue-rgb:  54, 40, 213;
+  --color-blue-glow: rgba(54, 40, 213, 0.14);
+  --color-blue-dim:  rgba(54, 40, 213, 0.08);
 
   /* Deep Violet Accent */
-  --color-copper:      #7C3AED;
-  --color-copper-rgb:  124, 58, 237;
-  --color-copper-glow: rgba(124, 58, 237, 0.1);
-  --color-copper-dim:  rgba(124, 58, 237, 0.06);
+  --color-copper:      #5E1EE8; 
+  --color-copper-rgb:  94, 30, 232;
+  --color-copper-glow: rgba(94, 30, 232, 0.14);
+  --color-copper-dim:  rgba(94, 30, 232, 0.08);
 
-  /* Clean contrast text */
-  --color-text:        #0E0C16;
-  --color-text-muted:  #4E4B5B;
-  --color-text-subtle: rgba(14, 12, 22, 0.12);
+  /* High contrast text */
+  --color-text:        #09080E; /* almost pure deep black/indigo */
+  --color-text-muted:  #292830; /* dark grey-indigo for highly readable body copy */
+  --color-text-subtle: rgba(9, 8, 14, 0.28);
 
   /* Structure */
-  --color-border:        rgba(79, 70, 229, 0.06);
-  --color-border-strong: rgba(79, 70, 229, 0.12);
-  --color-nav-bg:        rgba(246, 245, 250, 0.9);
-  --color-card-bg:       rgba(255, 255, 255, 0.85);
+  --color-border:        rgba(54, 40, 213, 0.08);
+  --color-border-strong: rgba(54, 40, 213, 0.18);
+  --color-nav-bg:        rgba(214, 212, 222, 0.85); /* semi-transparent frosted nav */
+  --color-card-bg:       rgba(255, 255, 255, 0.65); /* frosted glass card base */
 
-  --shadow-blue:   0 6px 32px rgba(79, 70, 229, 0.08), 0 1px 4px rgba(79, 70, 229, 0.04);
-  --shadow-copper: 0 6px 32px rgba(124, 58, 237, 0.08), 0 1px 4px rgba(124, 58, 237, 0.04);
-  --shadow-card:   0 2px 24px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
-  --shadow-nav:    0 2px 24px rgba(0, 0, 0, 0.03);
+  --shadow-blue:   0 8px 32px rgba(54, 40, 213, 0.06), 0 1px 4px rgba(54, 40, 213, 0.02);
+  --shadow-copper: 0 8px 32px rgba(94, 30, 232, 0.06), 0 1px 4px rgba(94, 30, 232, 0.02);
+  --shadow-card:   0 8px 36px rgba(0, 0, 0, 0.06), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  --shadow-nav:    0 4px 30px rgba(0, 0, 0, 0.04);
 }
 
 /* ── Reset ──────────────────────────────────────────────── */
@@ -1716,11 +1717,11 @@ h1, h2, h3, h4 {
   z-index: 0;
   pointer-events: none;
 }
-[data-theme="light"] .problem::before { opacity: 0.07; }
+[data-theme="light"] .problem::before { opacity: 0.12; }
 .problem .section__container { position: relative; z-index: 1; }
 .problem .engine-diagram { position: relative; z-index: 1; }
 
-/* Enhanced tool cards */
+/* Enhanced tool cards with Glassmorphism for Light Mode */
 .tool-card {
   border: 1px solid var(--color-border-strong);
   transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
@@ -1730,72 +1731,121 @@ h1, h2, h3, h4 {
   box-shadow: 0 20px 60px rgba(0,0,0,0.5), var(--shadow-blue);
 }
 [data-theme="light"] .tool-card {
-  box-shadow: 0 4px 28px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,0.85) inset;
-  border-color: var(--color-border-strong);
+  background: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(54, 40, 213, 0.1) !important;
+  box-shadow: 
+    0 10px 30px rgba(54, 40, 213, 0.04), 
+    0 1px 0 rgba(255,255,255,0.7) inset !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 [data-theme="light"] .tool-card:hover {
-  box-shadow: 0 12px 48px rgba(0,0,0,0.12), var(--shadow-blue);
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(54, 40, 213, 0.24) !important;
+  box-shadow: 
+    0 16px 40px rgba(54, 40, 213, 0.08), 
+    var(--shadow-blue), 
+    0 1px 0 rgba(255,255,255,0.85) inset !important;
 }
 
-/* Math cards enhanced */
+/* Math cards enhanced with Glassmorphism */
 [data-theme="light"] .math-card {
-  box-shadow: 0 4px 28px rgba(0,0,0,0.07), 0 1px 0 rgba(255,255,255,0.9) inset;
+  background: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(54, 40, 213, 0.1) !important;
+  box-shadow: 
+    0 10px 30px rgba(54, 40, 213, 0.04), 
+    0 1px 0 rgba(255,255,255,0.7) inset !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+[data-theme="light"] .math-card:hover {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(54, 40, 213, 0.24) !important;
+  box-shadow: 
+    0 16px 40px rgba(54, 40, 213, 0.08), 
+    var(--shadow-blue), 
+    0 1px 0 rgba(255,255,255,0.85) inset !important;
 }
 
-/* Event cards enhanced */
+/* Event cards enhanced with Glassmorphism */
 [data-theme="light"] .event-card {
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 0 rgba(255,255,255,0.9) inset;
+  background: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(54, 40, 213, 0.1) !important;
+  box-shadow: 
+    0 10px 30px rgba(54, 40, 213, 0.04), 
+    0 1px 0 rgba(255,255,255,0.7) inset !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+[data-theme="light"] .event-card:hover {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(54, 40, 213, 0.24) !important;
+  box-shadow: 
+    0 16px 40px rgba(54, 40, 213, 0.08), 
+    var(--shadow-blue), 
+    0 1px 0 rgba(255,255,255,0.85) inset !important;
+}
+
+/* Section Ambient Spotlight Glow (light theme only) */
+[data-theme="light"] .section {
+  background-image: radial-gradient(
+    circle at 50% 20%, 
+    rgba(54, 40, 213, 0.06) 0%, 
+    rgba(255, 255, 255, 0.12) 40%, 
+    transparent 75%
+  ) !important;
 }
 
 /* Nation photo main — fix light theme overlay */
 [data-theme="light"] .nation-photo-main__overlay {
   background: linear-gradient(
     180deg,
-    rgba(27,95,173,0.04) 0%,
+    rgba(54, 40, 213, 0.04) 0%,
     transparent 50%,
-    rgba(229,225,218,0.6) 100%
+    rgba(214, 211, 220, 0.65) 100%
   );
 }
 [data-theme="light"] .nation-photo-main {
-  box-shadow: var(--shadow-blue), 0 24px 60px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-blue), 0 24px 60px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-border-strong);
 }
 
 /* Scanner SVG theme adaptations */
-[data-theme="light"] .scanner__ring--outer { stroke: rgba(27,95,173,0.18); }
-[data-theme="light"] .scanner__ring--mid   { stroke: rgba(139,90,31,0.14); }
-[data-theme="light"] .scanner__ring--inner { stroke: rgba(27,95,173,0.24); }
-[data-theme="light"] .scanner__center circle { fill: rgba(245,242,236,0.9); stroke: var(--color-blue); }
+[data-theme="light"] .scanner__ring--outer { stroke: rgba(54, 40, 213, 0.18); }
+[data-theme="light"] .scanner__ring--mid   { stroke: rgba(94, 30, 232, 0.14); }
+[data-theme="light"] .scanner__ring--inner { stroke: rgba(54, 40, 213, 0.24); }
+[data-theme="light"] .scanner__center circle { fill: rgba(227, 225, 233, 0.9); stroke: var(--color-blue); }
 [data-theme="light"] .scanner__center path   { stroke: var(--color-copper); }
 [data-theme="light"] #scannerGlow feGaussianBlur { stdDeviation: 2; }
 
 /* Hero photo bg — light theme adjustment */
 [data-theme="light"] .hero__photo-bg img {
-  filter: grayscale(50%) brightness(0.50) contrast(1.1);
+  filter: grayscale(35%) brightness(0.55) contrast(1.05);
 }
 [data-theme="light"] .hero__photo-bg::after {
   background: linear-gradient(
     180deg,
-    rgba(229,225,218,0.25) 0%,
-    rgba(229,225,218,0.45) 40%,
-    rgba(229,225,218,0.82) 100%
+    rgba(214, 211, 220, 0.25) 0%,
+    rgba(214, 211, 220, 0.5) 40%,
+    var(--color-base) 100%
   );
 }
 
 /* Section labels in light mode */
 [data-theme="light"] .section__label {
   color: var(--color-blue);
-  border-color: var(--color-blue-dim);
+  border-color: var(--color-border-strong);
   background: var(--color-blue-dim);
 }
 
 /* Buttons in light mode */
 [data-theme="light"] .btn--ghost {
-  border-color: rgba(28,23,20, 0.2);
+  border-color: rgba(9, 8, 14, 0.22);
   color: var(--color-text);
 }
 [data-theme="light"] .btn--ghost:hover {
-  border-color: rgba(28,23,20, 0.35);
-  background: rgba(28,23,20, 0.04);
+  border-color: rgba(9, 8, 14, 0.4);
+  background: rgba(9, 8, 14, 0.05);
 }
 
 /* Stat numbers */
@@ -1872,7 +1922,7 @@ h1, h2, h3, h4 {
     180deg,
     rgba(216, 0, 100, 0.08) 0%,
     transparent 35%,
-    rgba(245, 242, 236, 0.9) 100%
+    var(--color-base-2) 100%
   ) !important;
 }
 
@@ -1902,11 +1952,11 @@ h1, h2, h3, h4 {
 }
 
 [data-theme="light"] {
-  --color-anima-accent: #D80032;
-  --color-anima-accent-rgb: 216, 0, 50;
-  --color-anima-glow: rgba(216, 0, 50, 0.12);
-  --color-anima-dim: rgba(216, 0, 50, 0.06);
-  --shadow-anima: 0 8px 32px rgba(216, 0, 50, 0.12), 0 0 80px rgba(139, 90, 31, 0.06);
+  --color-anima-accent: #C4002B;
+  --color-anima-accent-rgb: 196, 0, 43;
+  --color-anima-glow: rgba(196, 0, 43, 0.12);
+  --color-anima-dim: rgba(196, 0, 43, 0.06);
+  --shadow-anima: 0 8px 32px rgba(196, 0, 43, 0.08), 0 0 80px rgba(54, 40, 213, 0.05);
 }
 
 .glow-text--rose {
@@ -2212,9 +2262,9 @@ h1, h2, h3, h4 {
 [data-theme="light"] .anima-photo-main__overlay {
   background: linear-gradient(
     180deg,
-    rgba(216, 0, 50, 0.03) 0%,
+    rgba(196, 0, 43, 0.03) 0%,
     transparent 50%,
-    rgba(229, 225, 218, 0.65) 100%
+    var(--color-base) 100%
   );
 }
 

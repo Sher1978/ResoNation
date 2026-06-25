@@ -282,7 +282,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealEls = document.querySelectorAll(
     '.math-card, .tool-card, .event-card, .section__header, ' +
     '.nation-text, .nation-visual, .architect-text, .architect-photo, ' +
-    '.friction-item, .stat, .hero__stats'
+    '.friction-item, .stat, .hero__stats, ' +
+    '.anima-text, .anima-visual, .anima-step'
   );
 
   revealEls.forEach((el, i) => {
@@ -426,119 +427,197 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   }
 
-  /* ── RADAR LIFE ─────────────────────────────────── */
-  /* ── RADAR SCANNER ───────────────────────────────────────── */
-  const radarContainer = document.getElementById('scanner-figures');
-  if (radarContainer) {
-    const DOT_COUNT = 10;
-    const colors = ['red', 'red', 'red', 'red', 'red', 'orange', 'orange', 'orange', 'blue', 'blue'];
-    const dots = [];
-    const centerX = 100, centerY = 100;
-    const minR = 45, maxR = 85;
+  /* ── RADAR LIFE (Reflect.app style) ─────────────────────────────────── */
+  const radarNodesGroup = document.getElementById('radar-nodes');
+  const radarEdgesGroup = document.getElementById('radar-edges');
+  const sweepEl = document.getElementById('radar-sweep-beam');
+  const sweepElEn = document.getElementById('radar-sweep-beam-en');
 
-    class RadarDot {
-      constructor(color) {
-        this.color = color;
-        this.reset();
-        this.el = this.createEl();
-        radarContainer.appendChild(this.el);
-      }
-      reset() {
-        const angle = Math.random() * Math.PI * 2;
+  if (radarNodesGroup && radarEdgesGroup) {
+    const NODE_COUNT = 16;
+    const centerX = 300, centerY = 300;
+    const minR = 60, maxR = 270;
+    const nodes = [];
+    const edges = [];
+
+    // Colors mapping from design variables
+    const nodeColors = ['var(--color-blue)', 'var(--color-purple)', 'var(--color-copper)', 'var(--color-pink)'];
+
+    class NetworkNode {
+      constructor(index) {
+        this.index = index;
+        
+        // Distribute nodes in the upper semi-circle (180 to 360 degrees, or PI to 2*PI radians)
+        const anglePadding = 0.2; // avoid edges
+        const angle = Math.PI + anglePadding + Math.random() * (Math.PI - 2 * anglePadding);
         const r = minR + Math.random() * (maxR - minR);
-        this.x = centerX + Math.cos(angle) * r;
-        this.y = centerY + Math.sin(angle) * r;
-        this.vx = (Math.random() - 0.5) * 0.1; // Reduced from 0.2
-        this.vy = (Math.random() - 0.5) * 0.1; // Reduced from 0.2
-        this.targetAngle = 0;
+
+        this.baseX = centerX + Math.cos(angle) * r;
+        this.baseY = centerY + Math.sin(angle) * r;
+        
+        this.x = this.baseX;
+        this.y = this.baseY;
+
+        this.floatSpeed = 0.0008 + Math.random() * 0.0008;
+        this.phaseX = Math.random() * Math.PI * 2;
+        this.phaseY = Math.random() * Math.PI * 2;
+        this.amp = 8 + Math.random() * 8; // float amplitude
+
+        this.isKeyNode = Math.random() > 0.65;
+        this.size = this.isKeyNode ? (4 + Math.random() * 2) : (2 + Math.random() * 1.5);
+        this.color = nodeColors[Math.floor(Math.random() * nodeColors.length)];
+
+        this.el = this.createEl();
+        this.haloEl = this.createHaloEl();
+        
+        radarNodesGroup.appendChild(this.haloEl);
+        radarNodesGroup.appendChild(this.el);
       }
+
       createEl() {
-        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        g.setAttribute('class', 'radar-dot');
-        g.setAttribute('data-color', this.color);
-        
-        // Human silhouette (top view) - Slightly larger
-        const body = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
-        body.setAttribute('rx', '4.5'); // Increased from 3.5
-        body.setAttribute('ry', '2.5'); // Increased from 2.0
-        body.setAttribute('class', 'dot-body');
-        
-        const head = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        head.setAttribute('r', '2'); // Increased from 1.5
-        head.setAttribute('cy', '-0.5');
-        head.setAttribute('class', 'dot-head');
-        
-        g.appendChild(body);
-        g.appendChild(head);
-        return g;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('class', 'radar-node');
+        circle.setAttribute('r', this.size);
+        circle.setAttribute('fill', this.color);
+        return circle;
       }
-      update(beamAngle) {
-        // Chaotic movement - 2x slower
-        this.vx += (Math.random() - 0.5) * 0.01;
-        this.vy += (Math.random() - 0.5) * 0.01;
-        this.vx = Math.max(-0.15, Math.min(0.15, this.vx));
-        this.vy = Math.max(-0.15, Math.min(0.15, this.vy));
+
+      createHaloEl() {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('class', 'radar-node-halo');
+        circle.setAttribute('r', this.size * 2.5);
+        circle.setAttribute('fill', this.color);
+        circle.setAttribute('opacity', '0');
+        return circle;
+      }
+
+      update(time, beamAngleRad) {
+        // Floating movement
+        this.x = this.baseX + Math.sin(time * this.floatSpeed + this.phaseX) * this.amp;
+        this.y = this.baseY + Math.cos(time * this.floatSpeed + this.phaseY) * this.amp;
+
+        this.el.setAttribute('cx', this.x);
+        this.el.setAttribute('cy', this.y);
         
-        this.x += this.vx;
-        this.y += this.vy;
+        this.haloEl.setAttribute('cx', this.x);
+        this.haloEl.setAttribute('cy', this.y);
 
-        // Boundary check (circular)
-        const dx = this.x - centerX;
-        const dy = this.y - centerY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist > maxR || dist < minR) {
-          const angle = Math.atan2(dy, dx);
-          const targetR = dist > maxR ? maxR : minR;
-          this.x = centerX + Math.cos(angle) * targetR;
-          this.y = centerY + Math.sin(angle) * targetR;
-          this.vx *= -1;
-          this.vy *= -1;
-        }
+        // Flash behavior when sweeping beam passes
+        const nodeAngleRad = Math.atan2(this.y - centerY, this.x - centerX);
+        // Normalize angle to [0, 2*PI]
+        const normNodeAngle = (nodeAngleRad + Math.PI * 2) % (Math.PI * 2);
+        const normBeamAngle = (beamAngleRad + Math.PI * 2) % (Math.PI * 2);
 
-        // Apply position and rotation to silhouette
-        const dotAngleDeg = Math.atan2(this.y - centerY, this.x - centerX) * (180 / Math.PI);
-        this.el.setAttribute('transform', `translate(${this.x}, ${this.y}) rotate(${dotAngleDeg + 90})`);
+        // Angular distance
+        let diff = Math.abs(normNodeAngle - normBeamAngle);
+        if (diff > Math.PI) diff = Math.PI * 2 - diff;
 
-        // Flash check (Synchronized Sector)
-        const normalizedDot = (dotAngleDeg + 360) % 360;
-        const start = (beamAngle - 45 + 360) % 360;
-        const end = beamAngle % 360;
-        
-        let lit = false;
-        if (start > end) {
-          // Sector wraps through 0/360
-          if (normalizedDot >= start || normalizedDot <= end) lit = true;
+        if (diff < 0.25) {
+          const factor = 1 - (diff / 0.25); // 0 to 1
+          this.el.setAttribute('r', this.size * (1 + factor * 0.6));
+          this.haloEl.setAttribute('opacity', 0.2 + factor * 0.45);
+          this.el.setAttribute('fill', 'var(--color-text)');
         } else {
-          if (normalizedDot >= start && normalizedDot <= end) lit = true;
-        }
-        
-        if (lit) {
-          this.el.classList.add('is-lit');
-        } else {
-          this.el.classList.remove('is-lit');
+          this.el.setAttribute('r', this.size);
+          this.haloEl.setAttribute('opacity', '0.08');
+          this.el.setAttribute('fill', this.color);
         }
       }
     }
 
-    // Figures & Sweep Sync
-    const sweepEl = document.querySelector('.scanner__sweep');
-
-    // Init dots
-    colors.forEach(c => dots.push(new RadarDot(c)));
-
-    const animateRadar = (time) => {
-      // Beam angle: 4s loop -> 0 to 360
-      const beamAngle = (time % 4000) / 4000 * 360;
-      
-      // Update sweep rotation visually
-      if (sweepEl) {
-        sweepEl.setAttribute('transform', `rotate(${beamAngle}, 100, 100)`);
+    class NetworkEdge {
+      constructor(nodeA, nodeB) {
+        this.nodeA = nodeA;
+        this.nodeB = nodeB;
+        this.el = this.createEl();
+        radarEdgesGroup.appendChild(this.el);
       }
 
-      dots.forEach(d => d.update(beamAngle));
-      requestAnimationFrame(animateRadar);
+      createEl() {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('class', 'radar-edge');
+        line.setAttribute('stroke', 'rgba(124, 58, 237, 0.18)');
+        line.setAttribute('stroke-width', '0.8');
+        return line;
+      }
+
+      update() {
+        this.el.setAttribute('x1', this.nodeA.x);
+        this.el.setAttribute('y1', this.nodeA.y);
+        this.el.setAttribute('x2', this.nodeB.x);
+        this.el.setAttribute('y2', this.nodeB.y);
+        
+        // Dynamically fade edges if nodes float too far
+        const dx = this.nodeA.x - this.nodeB.x;
+        const dy = this.nodeA.y - this.nodeB.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const opacity = Math.max(0, 0.25 * (1 - dist / 160));
+        this.el.setAttribute('stroke', `rgba(124, 58, 237, ${opacity})`);
+      }
+    }
+
+    // Initialize nodes
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push(new NetworkNode(i));
+    }
+
+    // Connect close nodes to form constellation network
+    for (let i = 0; i < nodes.length; i++) {
+      const targets = [];
+      for (let j = 0; j < nodes.length; j++) {
+        if (i === j) continue;
+        const dx = nodes[i].baseX - nodes[j].baseX;
+        const dy = nodes[i].baseY - nodes[j].baseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          targets.push({ node: nodes[j], dist });
+        }
+      }
+      
+      // Sort and take top 2 closest
+      targets.sort((a, b) => a.dist - b.dist);
+      const connections = targets.slice(0, 2);
+      connections.forEach(c => {
+        // Prevent duplicate edges
+        const exists = edges.some(e => 
+          (e.nodeA === nodes[i] && e.nodeB === c.node) ||
+          (e.nodeA === c.node && e.nodeB === nodes[i])
+        );
+        if (!exists) {
+          edges.push(new NetworkEdge(nodes[i], c.node));
+        }
+      });
+    }
+
+    const animateReflectRadar = (time) => {
+      // Beam angle sweeps back and forth between -90 and 90 degrees (180 to 360 in rads)
+      const sweepPeriod = 8000; // 8s back-and-forth
+      let progress = (time % sweepPeriod) / sweepPeriod; // 0 to 1
+      if (progress > 0.5) progress = 1 - progress; // triangle wave: 0 -> 0.5 -> 0
+      
+      // Map progress [0, 0.5] to [-90, 90] degrees
+      const beamAngleDeg = -90 + (progress * 2) * 180;
+      
+      // Update sweep element transformation
+      if (sweepEl) {
+        sweepEl.setAttribute('transform', `rotate(${beamAngleDeg}, 300, 300)`);
+      }
+      if (sweepElEn) {
+        sweepElEn.setAttribute('transform', `rotate(${beamAngleDeg}, 300, 300)`);
+      }
+
+      // Convert beam angle to standard radians relative to (300,300) pivot
+      // Degree 0 is pointing right (360°), -90 is pointing up (270°), -180 is pointing left (180°)
+      // Since rotation pivots around (300,300) and the beam is vertical, beamAngleDeg = 0 is straight up (-90 degrees / 1.5*PI rads)
+      const beamAngleRad = Math.PI + (beamAngleDeg + 90) * (Math.PI / 180);
+
+      // Update nodes and edges
+      nodes.forEach(node => node.update(time, beamAngleRad));
+      edges.forEach(edge => edge.update());
+
+      requestAnimationFrame(animateReflectRadar);
     };
-    requestAnimationFrame(animateRadar);
+    requestAnimationFrame(animateReflectRadar);
   }
 
   /* ── CONSOLE SIGNATURE ──────────────────────────── */

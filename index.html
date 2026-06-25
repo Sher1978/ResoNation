@@ -22,6 +22,7 @@
         <li><a href="#problem">Проблема</a></li>
         <li><a href="#math">Математика</a></li>
         <li><a href="#tools">Инструменты</a></li>
+        <li><a href="#anima">Anima Space</a></li>
         <li><a href="#events">События</a></li>
         <li><a href="#architect">Игорь Шерлок</a></li>
       </ul>
@@ -39,6 +40,7 @@
       <a href="#problem">Проблема</a>
       <a href="#math">Математика</a>
       <a href="#tools">Инструменты</a>
+      <a href="#anima">Anima Space</a>
       <a href="#events">События</a>
       <a href="#architect">Игорь Шерлок</a>
       <div class="lang-switcher">
@@ -120,45 +122,61 @@
 
       <!-- Engine metaphor -->
       <div class="engine-diagram">
-        <div class="engine__core">
-          <!-- Premium SVG Scanner -->
-          <svg class="scanner-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="engine__core reflect-radar-container">
+          <!-- Premium Reflect.app style Radar -->
+          <svg class="reflect-radar" viewBox="0 0 600 320" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <filter id="scannerGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
+              <filter id="reflectGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
-              <linearGradient id="sweepGradient" x1="100" y1="100" x2="180" y2="100" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#007AFF" stop-opacity="0.8" />
-                <stop offset="100%" stop-color="#007AFF" stop-opacity="0" />
+              <linearGradient id="radarSweepGradient" x1="300" y1="300" x2="300" y2="10" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="var(--color-purple)" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="var(--color-blue)" stop-opacity="0" />
               </linearGradient>
             </defs>
-            
-            <!-- Background Rings -->
-            <circle class="scanner__ring scanner__ring--outer" cx="100" cy="100" r="90" stroke="rgba(0,122,255,0.15)" stroke-width="1" stroke-dasharray="10 5" />
-            <circle class="scanner__ring scanner__ring--mid" cx="100" cy="100" r="65" stroke="rgba(255,140,66,0.1)" stroke-width="1.5" />
-            <circle class="scanner__ring scanner__ring--inner" cx="100" cy="100" r="40" stroke="rgba(0,122,255,0.2)" stroke-width="2" stroke-dasharray="2 4" />
-            
-            <g id="scanner-figures"></g>
 
-            <!-- Radar Sweep -->
-            <path class="scanner__sweep" d="M100 100 L190 100 A90 90 0 0 0 163.64 36.36 Z" fill="url(#sweepGradient)" />
-            
-            <!-- Coordinates / Data Markers -->
-            <g class="scanner__markers" stroke="rgba(255,255,255,0.2)" stroke-width="1">
-              <line x1="100" y1="5" x2="100" y2="15" />
-              <line x1="100" y1="185" x2="100" y2="195" />
-              <line x1="5" y1="100" x2="15" y2="100" />
-              <line x1="185" y1="100" x2="195" y2="100" />
-            </g>
-            
-            <!-- Center Core -->
-            <g class="scanner__center" filter="url(#scannerGlow)">
-              <circle cx="100" cy="100" r="22" fill="rgba(26,26,27,0.8)" stroke="#007AFF" stroke-width="1.5" />
-              <path d="M92 100 H108 M100 92 V108" stroke="#FF8C42" stroke-width="2" stroke-linecap="round" />
-              <circle cx="100" cy="100" r="4" fill="#007AFF" />
+            <!-- Arcs (concentric semi-circles) -->
+            <path d="M 240,300 A 60,60 0 0,1 360,300" stroke="rgba(124, 58, 237, 0.12)" stroke-width="1.2" fill="none" />
+            <path d="M 180,300 A 120,120 0 0,1 420,300" stroke="rgba(124, 58, 237, 0.15)" stroke-width="1" fill="none" stroke-dasharray="4 2" />
+            <path d="M 120,300 A 180,180 0 0,1 480,300" stroke="rgba(124, 58, 237, 0.18)" stroke-width="1.2" fill="none" />
+            <path d="M 60,300 A 240,240 0 0,1 540,300" stroke="rgba(124, 58, 237, 0.12)" stroke-width="1" fill="none" stroke-dasharray="8 4" />
+            <path d="M 10,300 A 290,290 0 0,1 590,300" stroke="rgba(124, 58, 237, 0.22)" stroke-width="1.5" fill="none" />
+
+            <!-- Rays / Grid lines -->
+            <line x1="300" y1="300" x2="10" y2="300" stroke="rgba(124, 58, 237, 0.08)" stroke-width="1" />
+            <line x1="300" y1="300" x2="48.5" y2="155" stroke="rgba(124, 58, 237, 0.08)" stroke-width="1" />
+            <line x1="300" y1="300" x2="150" y2="40" stroke="rgba(124, 58, 237, 0.08)" stroke-width="1" />
+            <line x1="300" y1="300" x2="300" y2="10" stroke="rgba(124, 58, 237, 0.15)" stroke-width="1.5" stroke-dasharray="3 3" />
+            <line x1="300" y1="300" x2="450" y2="40" stroke="rgba(124, 58, 237, 0.08)" stroke-width="1" />
+            <line x1="300" y1="300" x2="551.5" y2="155" stroke="rgba(124, 58, 237, 0.08)" stroke-width="1" />
+            <line x1="300" y1="300" x2="590" y2="300" stroke="rgba(124, 58, 237, 0.08)" stroke-width="1" />
+
+            <!-- Radar sweep beam -->
+            <path id="radar-sweep-beam" d="M 300,300 L 290,10 A 290,290 0 0,1 360,25 Z" fill="url(#radarSweepGradient)" opacity="0.45" />
+
+            <!-- Dynamic connections (edges) and nodes generated by JS will inject here -->
+            <g id="radar-edges" opacity="0.65"></g>
+            <g id="radar-nodes"></g>
+
+            <!-- Center Core Node -->
+            <g class="radar__center-node" transform="translate(300, 300)">
+              <circle cx="0" cy="0" r="38" fill="rgba(124, 58, 237, 0.15)" filter="url(#reflectGlow)" />
+              <circle cx="0" cy="0" r="24" fill="var(--color-base-2)" stroke="var(--color-purple)" stroke-width="2" />
+              <circle cx="0" cy="0" r="18" fill="none" stroke="var(--color-blue)" stroke-width="1.2" stroke-dasharray="3 2" />
+              <!-- Graphic: Interconnected Nodes inside core -->
+              <circle cx="-5" cy="-5" r="2.5" fill="var(--color-blue)" />
+              <circle cx="5" cy="-6" r="2.2" fill="var(--color-purple)" />
+              <circle cx="7" cy="5" r="2.5" fill="var(--color-blue)" />
+              <circle cx="-7" cy="6" r="2" fill="var(--color-purple)" />
+              <circle cx="0" cy="0" r="3" fill="var(--color-copper)" />
+              <line x1="-5" y1="-5" x2="0" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
+              <line x1="5" y1="-6" x2="0" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
+              <line x1="7" y1="5" x2="0" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
+              <line x1="-7" y1="6" x2="0" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
             </g>
           </svg>
+          <div class="radar-pill-badge">Дешифровка Социального Кода</div>
         </div>
 
         <div class="friction-items">
@@ -465,6 +483,100 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ ANIMA SPACE -->
+  <section class="section anima-section" id="anima">
+    <div class="section__container">
+      <div class="anima-content">
+        <div class="anima-text">
+          <span class="section__label">Закрытое пространство</span>
+          <h2 class="anima__title">ANIMA SPACE:<br/><em>Территория антиодиночества</em></h2>
+          <p class="anima__body">
+            Внутри экосистемы Resonation создано особое, закрытое пространство для тех, кто готов перейти от теории к тотальной практике сближения.
+          </p>
+
+          <!-- System Hack Box -->
+          <div class="anima-hack-box">
+            <div class="anima-hack-side anima-hack-side--broken">
+              <h4 class="hack-side-title">Внешний мир сломан</h4>
+              <p class="hack-side-text">Вслепую перебирая случайные связи на дейтинг-платформах, вы играете в казино, где дилер всегда выигрывает.</p>
+              <div class="hack-stat-wrap">
+                <span class="hack-stat-num">0.01%</span>
+                <span class="hack-stat-label">шанс встретить своего человека</span>
+              </div>
+            </div>
+            <div class="anima-hack-divider">
+              <div class="hack-divider-line"></div>
+              <span class="hack-divider-badge">VS</span>
+            </div>
+            <div class="anima-hack-side anima-hack-side--hacked">
+              <h4 class="hack-side-title">Anima Space Hack</h4>
+              <p class="hack-side-text">Мы полностью убрали теорию вероятности, очистили среду от ментального смога и собрали людей твоего кода.</p>
+              <div class="hack-stat-wrap">
+                <span class="hack-stat-num glow-text--rose">100%</span>
+                <span class="hack-stat-label">соответствие социальному коду</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="anima-stages-header">
+            <h3 class="anima-stages-title">Три стадии перехода в резонанс</h3>
+            <p class="anima-stages-subtitle">Мы не занимаемся поп-психологией и не даем глянцевых советов. Внутри Anima Space твоя трансформация проходит через три четких, последовательных этапа:</p>
+          </div>
+
+          <!-- Vertical Timeline Steps -->
+          <div class="anima-steps">
+            <div class="anima-step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4 class="step-title">УЗНАЙ СЕБЯ <span class="step-tag">Освобождение природной энергии</span></h4>
+                <p class="step-desc">Через юнгианские архетипы, Код Личности и мягкую соматическую самодиагностику ты увидишь, как тело годами копило защиту от прошлых обид и разочарований. Ты научишься бережно снимать эти накопившиеся внутренние доспехи, возвращая себе подлинную чувственность, легкость и природный магнетизм.</p>
+              </div>
+            </div>
+
+            <div class="anima-step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4 class="step-title">ПОЙМИ ДРУГОГО <span class="step-tag">Рентген Личности</span></h4>
+                <p class="step-desc">Ты научишься бесконтактно читать клинический характер партнера (Шизоид, Нарцисс, Истероид), поймешь его «язык безопасности» и тип привязанности, перестав принимать его защиты на свой счет.</p>
+              </div>
+            </div>
+
+            <div class="anima-step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4 class="step-title">ВЗАИМОДЕЙСТВУЙ <span class="step-tag">Язык Резонанса</span></h4>
+                <p class="step-desc">Ты получаешь готовые речевые рельсы Ненасильственного Общения (ННО), шаблоны «Я-позиции» и телесные практики, позволяющие комфортно и бесконфликтно выходить из любых потенциально кризисных ситуаций.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="anima-actions">
+            <a href="https://t.me/" class="btn btn--anima btn--lg">
+              Узнать подробнее
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="anima-visual">
+          <div class="anima-photo-container">
+            <div class="anima-glow"></div>
+            <div class="anima-photo-main">
+              <img src="img-anima-space.png" alt="Anima Space: Territory of Anti-Loneliness" />
+              <div class="anima-photo-main__overlay"></div>
+            </div>
+            <div class="anima-badge">
+              <div class="anima-badge__title">Закрытый Клуб</div>
+              <div class="anima-badge__subtitle">Тотальная практика сближения</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
